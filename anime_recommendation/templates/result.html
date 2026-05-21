@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if anime %}{{ anime.title }}{% else %}Anime Recommendations{% endif %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <a class="back-link" href="/">← Search again</a>
+
+        {% if error %}
+            <div class="error-card">
+                <h2>Oops!</h2>
+                <p>{{ error }}</p>
+            </div>
+        {% elif anime %}
+            <div class="anime-card">
+                <div class="anime-info">
+                    <span class="eyebrow">Search Result</span>
+                    <h1>{{ anime.title }}</h1>
+                    <div class="meta-row">
+                        <span>Rating: {{ anime.score }}</span>
+                        <span>{{ anime.genres | join(', ') }}</span>
+                    </div>
+                    <p class="description">{{ anime.description }}</p>
+                </div>
+                {% if anime.image %}
+                    <img class="main-poster" src="{{ anime.image }}" alt="{{ anime.title }} poster">
+                {% endif %}
+            </div>
+
+            <section class="recommendations">
+                <h2>Similar Anime</h2>
+                <div class="cards">
+                    {% for rec in anime.recommendations %}
+                        <article class="card">
+                            {% if rec.image %}
+                                <img src="{{ rec.image }}" alt="{{ rec.title }} poster">
+                            {% endif %}
+                            <h3>{{ rec.title }}</h3>
+                            <p>Score: {{ rec.score }}</p>
+                            <p class="small">Genres: {{ rec.genres | join(', ') }}</p>
+                        </article>
+                    {% endfor %}
+                </div>
+            </section>
+        {% else %}
+            <div class="error-card">
+                <h2>No results yet</h2>
+                <p>Use the search page to find an anime and get recommendations from AniList.</p>
+            </div>
+        {% endif %}
+
+        <footer>
+            <p>Anime data provided by AniList API.</p>
+        </footer>
+    </div>
+</body>
+</html>

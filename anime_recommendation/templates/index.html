@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AniList Anime Recommender</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="hero-card">
+            <div>
+                <span class="eyebrow">Anime Recommender</span>
+                <h1>Discover similar anime with AniList</h1>
+                <p>Search any anime title and get real-time poster, ratings, genres, and recommendation cards powered by AniList GraphQL.</p>
+            </div>
+
+            <form action="/recommend" method="POST" class="search-form">
+                <input type="text" name="anime" placeholder="Enter Anime Name" required>
+                <button type="submit">Recommend</button>
+            </form>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">Search anime titles</div>
+            <div class="feature-card">Real-time AniList API</div>
+            <div class="feature-card">Poster and genres</div>
+            <div class="feature-card">Styled Flask UI</div>
+        </div>
+    </div>
+</body>
+</html>
